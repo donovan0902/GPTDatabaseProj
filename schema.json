@@ -1,0 +1,64 @@
+{
+    "Patients": {
+        "columns": {
+            "PatientID": "INT",
+            "FirstName": "VARCHAR(50)",
+            "LastName": "VARCHAR(50)",
+            "DateOfBirth": "DATE",
+            "Gender": "VARCHAR(10)",
+            "Address": "VARCHAR(100)",
+            "PhoneNumber": "VARCHAR(15)",
+            "Email": "VARCHAR(50)"
+        },
+        "primary_key": "PatientID"
+    },
+    "Surgeons": {
+        "columns": {
+            "SurgeonID": "INT",
+            "FirstName": "VARCHAR(50)",
+            "LastName": "VARCHAR(50)",
+            "Specialty": "VARCHAR(50)",
+            "PhoneNumber": "VARCHAR(15)",
+            "Email": "VARCHAR(50)"
+        },
+        "primary_key": "SurgeonID"
+    },
+    "Operations": {
+        "columns": {
+            "OperationID": "INT",
+            "OperationDate": "DATE",
+            "OperationType": "VARCHAR(50)",
+            "Duration": "TIME",
+            "Notes": "TEXT"
+        },
+        "primary_key": "OperationID"
+    },
+    "PatientOps": {
+        "columns": {
+            "PatientID": "INT",
+            "OperationID": "INT"
+        },
+        "foreign_keys": {
+            "PatientID": {
+                "references": "Patients(PatientID)"
+            },
+            "OperationID": {
+                "references": "Operations(OperationID)"
+            }
+        }
+    },
+    "SurgeonOps": {
+        "columns": {
+            "SurgeonID": "INTEGER",
+            "OperationID": "INTEGER"
+        },
+        "foreign_keys": {
+            "OperationID": {
+                "references": "Operations(OperationID)"
+            },
+            "SurgeonID": {
+                "references": "Surgeons(SurgeonID)"
+            }
+        }
+    }
+}
